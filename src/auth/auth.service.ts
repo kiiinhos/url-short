@@ -18,9 +18,6 @@ export class AuthService {
     const user = await this.usersService.findOneByEmail(email);
     if (user) {
       const isPasswordValid = await bcrypt.compare(pass, user.password);
-      console.log('Senha fornecida:', pass);
-      console.log('Senha armazenada:', user.password);
-      console.log('Senha válida (bcrypt.compare):', isPasswordValid);
 
       if (isPasswordValid) {
         const { password, ...result } = user;
@@ -44,8 +41,6 @@ export class AuthService {
     newUser.email = createUserDto.email;
     newUser.password = createUserDto.password;
     const savedUser = await this.usersService.create(newUser);
-    console.log('Usuário salvo com email:', savedUser.email);
-    console.log('Senha hasheada:', savedUser.password);
     return savedUser;
   }
 }

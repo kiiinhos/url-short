@@ -38,9 +38,7 @@ export class User {
   @BeforeUpdate()
   async hashPassword() {
     if (this.password) {
-      console.log('Hashing password...');
       this.password = await bcrypt.hash(this.password, 10);
-      console.log('Senha hasheada:', this.password);
     }
   }
 

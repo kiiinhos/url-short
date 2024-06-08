@@ -47,10 +47,8 @@ export class UsersService {
     const user = new User();
     user.email = createUserDto.email;
     user.password = createUserDto.password;
-    console.log('Usuário antes de salvar:', user);
 
     const savedUser = await this.usersRepository.save(user);
-    console.log('Usuário salvo:', savedUser);
     return savedUser;
   }
 

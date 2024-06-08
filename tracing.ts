@@ -14,6 +14,5 @@ const sdk = new NodeSDK({
 
 sdk.start();
 
-console.log('Tracing initialized');
 
 export default sdk;
