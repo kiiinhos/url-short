@@ -5,7 +5,6 @@ WORKDIR /app
 
 # Copiar apenas os arquivos de dependências e .env para aproveitar o cache do Docker
 COPY package*.json ./
-COPY .env ./
 
 RUN npm install
 
