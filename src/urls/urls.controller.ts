@@ -23,14 +23,14 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UrlAuthGuard } from '../auth/url-auth-guard';
-import { AppLogger } from '../common/logger/logger.service'; // Importar o logger
+import { AppLogger } from '../common/logger/logger.service'; 
 
 @ApiTags('urls')
 @Controller('urls')
 export class UrlsController {
   constructor(
     private readonly urlsService: UrlsService,
-    private readonly logger: AppLogger, // Injetar o logger
+    private readonly logger: AppLogger, 
   ) {}
 
   @Post()
