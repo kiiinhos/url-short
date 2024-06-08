@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: url_short
+      JWT_SECRET: XG71bT4T6o9fjq9uB2h3cJ1dQ8kR6eY7V5pA0wL3sZ4mN8yX
+      OBSERVABILITY_ENABLED: true
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      JAEGER_URL: http://jaeger:14268/api/traces
+    depends_on:
+      - db
+      - elasticsearch
+      - jaeger
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: url_short
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  elasticsearch:
+    image: elasticsearch:7.10.1
+    environment:
+      - discovery.type=single-node
+    ports:
+      - '9200:9200'
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.21
+    ports:
+      - '5775:5775/udp'
+      - '6831:6831/udp'
+      - '6832:6832/udp'
+      - '5778:5778'
+      - '16686:16686'
+      - '14268:14268'
+      - '14250:14250'
+      - '9411:9411'
+
+volumes:
+  db_data:
