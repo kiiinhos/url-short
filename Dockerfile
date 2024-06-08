@@ -5,6 +5,7 @@ WORKDIR /app
 
 # Copiar apenas os arquivos de dependências e .env para aproveitar o cache do Docker
 COPY package*.json ./
+COPY .env ./
 
 RUN npm install
 
@@ -24,7 +25,7 @@ WORKDIR /app
 # Copiar o diretório dist gerado no estágio de build
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package*.json ./
-
+COPY --from=builder /app/.env ./
 
 # Instalar apenas dependências de produção
 RUN npm install --only=production
