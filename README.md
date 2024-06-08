@@ -100,6 +100,21 @@ http://localhost:3000/api
 - **GET /:shortId**: Redirecionar para URL Original
     - Redireciona para o URL de origem e contabiliza o acesso.
 
+## Observabilidade
+
+Este projeto possui suporte para observabilidade usando Elasticsearch e Jaeger. Para configurar, use as seguintes variáveis de ambiente no arquivo `.env`:
+
+- **OBSERVABILITY_ENABLED**: Ativa/desativa a observabilidade. Use `true` para ativar e `false` para desativar.
+- **ELASTICSEARCH_URL**: URL do serviço Elasticsearch.
+- **JAEGER_URL**: URL do serviço Jaeger.
+
+Exemplo de configuração:
+
+```
+OBSERVABILITY_ENABLED=true
+ELASTICSEARCH_URL=http://localhost:9200
+JAEGER_URL=http://localhost:14268/api/traces
+```
 ## Estrutura do Projeto
 
 ### Arquivos Principais
