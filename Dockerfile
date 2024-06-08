@@ -24,7 +24,7 @@ WORKDIR /app
 # Copiar o diretório dist gerado no estágio de build
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/.env ./
+
 
 # Instalar apenas dependências de produção
 RUN npm install --only=production
